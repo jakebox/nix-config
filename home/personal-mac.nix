@@ -21,9 +21,10 @@
   home.packages = with pkgs; [
     taskwarrior3
     neovide
-    hackrf
+    # hackrf
     claude-code
-    gnuradio
+    # gnuradio
+    taskwarrior-tui
   ];
 
   programs.zsh = {

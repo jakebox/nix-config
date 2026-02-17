@@ -13,10 +13,12 @@
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
+    taps = [ "homebrew/cask" ];
     brews = [
       { name = "emacs-plus"; }
       { name = "soapyhackrf"; }
       { name = "soapysdr"; }
+      { name = "mas"; } # CLI brew control, used by nix-homebrew
     ];
     casks = [
       "firefox"

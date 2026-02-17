@@ -33,17 +33,20 @@
 
   programs.git = {
     enable = true;
-    userName = "Jacob Boxerman";
-    userEmail = email;
+    settings.user = {
+      name = "Jacob Boxerman";
+      email = email;
+    };
     ignores = [ "justfile" ".DS_Store" ];
     signing.signByDefault = true;
     signing.key = "${config.home.homeDirectory}/.ssh/${mainSSHKey}";
-    extraConfig = {
+    settings = {
       gpg.format = "ssh";
     };
   };
 
   programs.ssh.enable = true;
+  programs.ssh.enableDefaultConfig = false;
 
   home.sessionVariables = {
     NIXCONFIG_DIR = "${config.home.homeDirectory}/nix-config";

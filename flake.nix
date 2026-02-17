@@ -4,13 +4,13 @@
   inputs = {
 
     # Nix-Darwin Flake Inputs ---------
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     home-manager-darwin = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
@@ -31,14 +31,14 @@
 
     # NixOS Flake Inputs ---------
     home-manager-nixos = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     # nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
@@ -82,7 +82,18 @@
               home-manager.useUserPackages = true;
               home-manager.users.jacob = import ./home/personal-mac.nix;
               nixpkgs.overlays = [
-                (final: prev: { claude-code = (import inputs.nixpkgs-unstable { system = final.system; config.allowUnfree = true; }).claude-code; })
+                (final: prev:
+                  let
+                    unstable = import inputs.nixpkgs-unstable {
+                      system = final.system;
+                      config.allowUnfree = true;
+                    };
+                  in
+                  {
+                    claude-code = unstable.claude-code;
+                    taskwarrior-tui = unstable.taskwarrior-tui;
+                  }
+                )
               ];
             }
           ];
