@@ -94,9 +94,33 @@
             }
           ];
         }
+        {
+          name = "Website";
+          bookmarks = [
+            {
+              name = "Search console";
+              url = "https://search.google.com/search-console/performance/search-analytics?resource_id=https%3A%2F%2Fjakebox.github.io%2F";
+            }
+            {
+              name = "Analytics";
+              url = "https://analytics.google.com/analytics/web/#/a368252691p504873477/reports/intelligenthome";
+            }
+          ];
+        }
+        {
+          name = "Misc";
+          bookmarks = [
+            {
+              name = "Liondine";
+              url = "https://liondine.com/";
+            }
+            {
+              name = "Beerbelly";
+              url = "https://beerbellyapp.com/";
+            }
+          ];
+        }
       ];
-
-
       # Set preferences
       settings = {
         # Compact mode
