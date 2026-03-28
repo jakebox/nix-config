@@ -20,6 +20,7 @@
     ripgrep
     zoxide
     tmux
+    zellij
   ];
 
   programs.neovim = {
@@ -53,6 +54,12 @@
   };
 
   programs.ssh.matchBlocks = {
+    "*" = {
+      serverAliveInterval = 60;
+      serverAliveCountMax = 3;
+      addKeysToAgent = "yes";
+      identitiesOnly = true;
+    };
     "github github.com" = {
       hostname = "github.com";
       user = "git";

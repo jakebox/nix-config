@@ -44,6 +44,7 @@
       "veracrypt"
       "arduino-ide"
       "vlc"
+      "xournal++"
     ];
     masApps = {
       "copyclip" = 595191960;

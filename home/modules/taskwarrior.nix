@@ -26,8 +26,8 @@
         columns = "id,due,tags,due.relative,description";
         labels = "ID,Due Date,Tags,Due,Description";
         sort = "urgency-,tags+"; # Sort by urgency and then group tags together, and block the column
-        filter = "+PENDING and (due.before:+12d or +proj or priority:M or priority:H or +next or +ACTIVE)";
-        dateformat = "a, D b";
+        filter = "+PENDING and (due.before:+12d or priority:M or priority:H or +next or +ACTIVE or (due.before:+16d and +proj))";
+        dateformat = "a D";
       };
 
       report.w = {
@@ -48,17 +48,29 @@
       # Visual
       column.padding = 4;
       color.due = "gray22";
-      color.overdue = "red";
+      color.overdue = "rgb421";
+      color.calendar.today = "green";
       # make tagged and untagged the same color
       color.tagged = "gray15";
+      color.tag.proj = "rgb315";
       color.tag.none = "gray15";
-      color.uda.priority.H = "gray15";
+      color.uda.priority.H = "on red";
       color.uda.priority.M = "gray15";
       color.uda.priority.L = "gray15";
+
+      # school keywords
+      color.keyword.paper = "rgb434";
+      color.keyword.Paper = "rgb434";
+      color.keyword.response = "rgb434";
+      color.keyword.Response = "rgb434";
+
+      # move overdue to take precedence over tag
+      rule.precedence.color = "deleted,completed,overdue,active,keyword.,tag.,project.,scheduled,due.today,due,blocked,blocking,recurring,tagged,uda.";
+
       # color.until = "white";
 
       # Something is due soon if it is due in <5 days
-      due = 4;
+      due = 5;
     };
   };
 }
