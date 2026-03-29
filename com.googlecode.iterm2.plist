@@ -26,6 +26,8 @@
 	<string>https://api.openai.com/v1/responses</string>
 	<key>AllowClipboardAccess</key>
 	<true/>
+	<key>AutoComposer</key>
+	<false/>
 	<key>ClickToSelectCommand</key>
 	<false/>
 	<key>CopySelection</key>
@@ -417,8 +419,16 @@
 	<true/>
 	<key>HideTabNumber</key>
 	<false/>
+	<key>Hotkey</key>
+	<true/>
+	<key>HotkeyChar</key>
+	<integer>32</integer>
+	<key>HotkeyCode</key>
+	<integer>49</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>HotkeyModifiers</key>
+	<integer>524288</integer>
 	<key>NeverWarnAboutShortLivedSessions_A57C04A8-4D6A-428A-9CE0-FDDD49431DAA</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_A57C04A8-4D6A-428A-9CE0-FDDD49431DAA_selection</key>
@@ -2294,13 +2304,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.97999999999999998</real>
+				<real>0.97201924073123691</real>
 				<key>Color Space</key>
-				<string>sRGB</string>
+				<string>P3</string>
 				<key>Green Component</key>
-				<real>0.97999999999999998</real>
+				<real>0.97201927891571482</real>
 				<key>Red Component</key>
-				<real>0.97999999999999998</real>
+				<real>0.97201936141304346</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -2671,7 +2681,7 @@
 			<key>Minimum Contrast (Dark)</key>
 			<real>0.0</real>
 			<key>Minimum Contrast (Light)</key>
-			<real>0.0</real>
+			<real>0.46837797619047616</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
