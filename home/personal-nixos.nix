@@ -14,13 +14,20 @@
 
   home.packages = [
     pkgs.emacs30
-    pkgs.firefox
     pkgs.ghostty
   ];
 
   programs.zsh = {
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake $NIXCONFIG_DIR/.#butane";
+    };
+  };
+
+  programs.ssh.matchBlocks = {
+    "ixion" = {
+      hostname = "5.161.250.109";
+      user = "ixion";
+      identityFile = "%d/.ssh/beerbelly-key";
     };
   };
 

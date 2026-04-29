@@ -9,6 +9,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  zramSwap.enable = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -39,6 +41,7 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+    options = "caps:escape";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -70,6 +73,14 @@
       enable = true;
     };
   };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
+  services.tailscale.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
