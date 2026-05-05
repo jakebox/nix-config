@@ -60,6 +60,20 @@
             }
           ];
         };
+
+        lanolin = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./systems/z2-hardware-configuration.nix
+            ./systems/z2-configuration.nix
+            inputs.home-manager-nixos.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jacob = import ./home/server-nixos.nix;
+            }
+          ];
+        };
       };
 
       # $ darwin-rebuild build --flake .#prism
