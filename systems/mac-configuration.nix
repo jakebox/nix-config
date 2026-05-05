@@ -45,6 +45,7 @@
       "arduino-ide"
       "vlc"
       "xournal++"
+      "tailscale"
     ];
     masApps = {
       "copyclip" = 595191960;

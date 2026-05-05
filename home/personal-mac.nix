@@ -55,7 +55,7 @@
   programs.ssh.matchBlocks = {
     "ixion" = {
       hostname = "5.161.250.109";
-      user = "beerbelly";
+      user = "ixion";
       identityFile = "%d/.ssh/beerbelly-key";
     };
   };

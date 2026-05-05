@@ -71,6 +71,10 @@
 
       # Something is due soon if it is due in <5 days
       due = 5;
+
+      # taskwarrior-tui
+      uda.taskwarrior-tui.task-report.prompt-on-delete = "yes";
+      uda.taskwarrior-tui.task-report.prompt-on-done = "yes";
     };
   };
 }
