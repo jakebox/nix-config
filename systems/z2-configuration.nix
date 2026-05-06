@@ -43,6 +43,26 @@
 
   services.tailscale.enable = true;
 
+  services.syncthing = {
+    enable = true;
+    dataDir = "/home/jacob/";
+    user = "jacob";
+    settings = {
+      devices = {
+        "mac" = {
+          id = "ZN6RW4V-G656XZ5-DMCXAUZ-OKSAJRE-CRGWNPK-5D2GWXW-CQGACHL-BSHAJQY";
+        };
+      };
+      folders = {
+        "core" = {
+          path = "/home/jacob/core";
+          devices = [ "mac" ];
+        };
+      };
+    };
+  }; 
+
+
   networking.firewall.allowedTCPPorts = [ 22 ];
 
   # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
