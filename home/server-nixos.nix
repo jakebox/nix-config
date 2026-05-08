@@ -13,11 +13,20 @@
 
   home.packages = [
     pkgs.emacs30
+    pkgs.tree
   ];
 
   programs.zsh = {
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake $NIXCONFIG_DIR/.#lanolin";
+    };
+  };
+  programs.starship = {
+    enable = true;
+    settings = {
+      hostname = {
+        ssh_only = false;
+      };
     };
   };
 
