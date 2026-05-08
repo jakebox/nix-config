@@ -19,7 +19,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jacob = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "filebrowser" ];
     shell = pkgs.zsh;
     hashedPassword = "$y$j9T$yhnph5fmv4egpuYLpEXST/$.smYXtndwrunKUMCpwveaAorZOD0j.vQjBPgdaJOhGC";
   };
@@ -33,13 +33,13 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILN5HACeH+NgQ2Mwpz2WZcs7cMu17MoY8KV2o1gG33TL jacob@prism.local"
     ];
     extraGroups = [ "wheel" ];
+    packages = with pkgs; [ vim neovim lazygit btop zellij ];
   };
 
   programs.zsh.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "yes";
 
   services.tailscale.enable = true;
 
@@ -47,6 +47,7 @@
     enable = true;
     dataDir = "/home/jacob/";
     user = "jacob";
+    guiAddress = "100.99.105.101:8384";
     settings = {
       devices = {
         "mac" = {
@@ -55,13 +56,21 @@
       };
       folders = {
         "core" = {
-          path = "/home/jacob/core";
+          path = "/data/core";
           devices = [ "mac" ];
         };
       };
     };
   }; 
 
+  services.filebrowser = {
+    enable = true;
+    settings = {
+      port = 8081;
+      address = "100.99.105.101";
+      root = "/data";
+    };
+  };
 
   networking.firewall.allowedTCPPorts = [ 22 ];
 
