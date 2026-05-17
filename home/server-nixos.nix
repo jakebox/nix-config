@@ -14,6 +14,7 @@
   home.packages = [
     pkgs.emacs30
     pkgs.tree
+    pkgs.restic
   ];
 
   programs.zsh = {

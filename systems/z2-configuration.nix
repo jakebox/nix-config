@@ -47,6 +47,7 @@
     enable = true;
     dataDir = "/home/jacob/";
     user = "jacob";
+    group = "users";
     guiAddress = "100.99.105.101:8384";
     settings = {
       devices = {
@@ -65,6 +66,8 @@
 
   services.filebrowser = {
     enable = true;
+    user = "jacob";
+    group = "users";
     settings = {
       port = 8081;
       address = "100.99.105.101";
