@@ -69,7 +69,7 @@
     "ixion" = {
       hostname = "5.161.250.109";
       user = "ixion";
-      identityFile = "%d/.ssh/beerbelly-key";
+      identityFile = "%d/.ssh/${config._module.args.mainSSHKey}";
     };
   };
 

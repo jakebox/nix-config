@@ -31,6 +31,14 @@
     };
   };
 
+  programs.ssh.matchBlocks = {
+    "ixion" = {
+      hostname = "5.161.250.109";
+      user = "ixion";
+      identityFile = "%d/.ssh/${config._module.args.mainSSHKey}";
+    };
+  };
+
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
 }
