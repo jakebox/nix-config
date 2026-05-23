@@ -15,6 +15,7 @@
     pkgs.emacs30
     pkgs.tree
     pkgs.restic
+    pkgs.nix-output-monitor
   ];
 
   programs.zsh = {
