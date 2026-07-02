@@ -15,6 +15,14 @@
           url = "https://mail.google.com/mail/u/0/#inbox";
         }
         {
+          name = "Proton Mail";
+          url = "https://mail.proton.me/u/2/inbox";
+        }
+        {
+          name = "Calendar";
+          url = "https://calendar.google.com/calendar/u/0/r";
+        }
+        {
           name = "Github";
           url = "https://github.com/jakebox/";
         }

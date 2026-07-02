@@ -18,6 +18,7 @@
       { name = "emacs-plus"; }
       { name = "soapyhackrf"; }
       { name = "soapysdr"; }
+      { name = "scrcpy"; }
       { name = "mas"; } # CLI brew control, used by nix-homebrew
     ];
     casks = [
@@ -45,7 +46,10 @@
       "arduino-ide"
       "vlc"
       "xournal++"
-      "tailscale"
+      "tailscale-app"
+      "cloudflare-warp"
+      "android-platform-tools"
+      "handbrake-app"
     ];
     masApps = {
       "copyclip" = 595191960;
