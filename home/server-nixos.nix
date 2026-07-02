@@ -2,20 +2,22 @@
 
 {
   _module.args.mainSSHKey = "lanolin-key";
-  _module.args.username = "jacob";
-  _module.args.email = "jacobboxerman@gmail.com";
 
   imports = [
     ./common.nix
+    ./modules/ssh-identities.nix
   ];
 
-  home.homeDirectory = "/home/${config._module.args.username}";
+  home.sessionVariables = {
+    NIXCONFIG_DIR = "${config.home.homeDirectory}/nix-config";
+  };
 
   home.packages = [
     pkgs.emacs30
     pkgs.tree
     pkgs.restic
     pkgs.nix-output-monitor
+    pkgs.claude-code
   ];
 
   programs.zsh = {
@@ -29,14 +31,6 @@
       hostname = {
         ssh_only = false;
       };
-    };
-  };
-
-  programs.ssh.matchBlocks = {
-    "ixion" = {
-      hostname = "5.161.250.109";
-      user = "ixion";
-      identityFile = "%d/.ssh/${config._module.args.mainSSHKey}";
     };
   };
 

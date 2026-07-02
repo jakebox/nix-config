@@ -2,15 +2,17 @@
 
 {
   _module.args.mainSSHKey = "ubuntu-vm-key";
-  _module.args.username = "jacob";
   _module.args.email = "jib2137@columbia.edu";
 
   imports = [
     ./common.nix
+    ./modules/ssh-identities.nix
     ./modules/browser.nix
   ];
 
-  home.homeDirectory = "/home/${config._module.args.username}";
+  home.sessionVariables = {
+    NIXCONFIG_DIR = "${config.home.homeDirectory}/nix-config";
+  };
 
   home.packages = [
     pkgs.emacs30

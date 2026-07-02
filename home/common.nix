@@ -1,12 +1,18 @@
 # Common home-manager configurations
 # Contains options common to any host, such as editor and shell configurations.
 
-{ config, pkgs, mainSSHKey, username, email, lib, ... }:
+{ config, pkgs, mainSSHKey, lib, ... }:
 
+let
+  username = config._module.args.username;
+  email = config._module.args.email;
+in
 {
-  home = {
-    username = username;
-  };
+  _module.args.username = lib.mkDefault "jacob";
+  _module.args.email = lib.mkDefault "jacobboxerman@gmail.com";
+
+  home.username = username;
+  home.homeDirectory = lib.mkDefault "/home/${username}";
 
   home.packages = with pkgs; [
     direnv
@@ -21,6 +27,7 @@
     zoxide
     tmux
     zellij
+    rsync
   ];
 
   programs.neovim = {
@@ -34,14 +41,14 @@
 
   programs.git = {
     enable = true;
-    settings.user = {
-      name = "Jacob Boxerman";
-      email = email;
-    };
     ignores = [ "justfile" ".DS_Store" ];
     signing.signByDefault = true;
     signing.key = "${config.home.homeDirectory}/.ssh/${mainSSHKey}";
     settings = {
+      user = {
+        name = "Jacob Boxerman";
+        email = email;
+      };
       gpg.format = "ssh";
     };
   };
@@ -49,21 +56,12 @@
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
 
-  home.sessionVariables = {
-    NIXCONFIG_DIR = "${config.home.homeDirectory}/nix-config";
-  };
-
   programs.ssh.matchBlocks = {
     "*" = {
       serverAliveInterval = 60;
       serverAliveCountMax = 3;
       addKeysToAgent = "yes";
       identitiesOnly = true;
-    };
-    "github github.com" = {
-      hostname = "github.com";
-      user = "git";
-      identityFile = "%d/.ssh/${config._module.args.mainSSHKey}";
     };
   };
 
@@ -85,6 +83,14 @@
         "git"
       ];
     };
+    completionInit = ''
+      autoload -U compinit
+      if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+        compinit
+      else
+        compinit -C
+      fi
+    '';
     shellAliases = {
       lg = "lazygit";
       gst = "git status";
@@ -126,7 +132,6 @@
     unbind %
     ";
     plugins = with pkgs; [
-      tmuxPlugins.prefix-highlight
       {
         plugin = tmuxPlugins.prefix-highlight;
         extraConfig = "set -g @plugin 'tmux-plugins/tmux-prefix-highlight'

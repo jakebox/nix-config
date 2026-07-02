@@ -40,9 +40,16 @@
     # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    claude-code-nix.url = "github:sadjow/claude-code-nix";
   };
 
   outputs = inputs:
+    let
+      claudeCodeOverlay = final: prev: {
+        claude-code = inputs.claude-code-nix.packages.${final.stdenv.hostPlatform.system}.default;
+      };
+    in
     {
       nixosConfigurations = {
         # $ sudo nixos-rebuild switch --flake .#butane
@@ -71,6 +78,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.jacob = import ./home/server-nixos.nix;
+              nixpkgs.overlays = [ claudeCodeOverlay ];
             }
           ];
         };
@@ -96,6 +104,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.jacob = import ./home/personal-mac.nix;
               nixpkgs.overlays = [
+                claudeCodeOverlay
                 (final: prev:
                   let
                     unstable = import inputs.nixpkgs-unstable {
@@ -104,7 +113,6 @@
                     };
                   in
                   {
-                    claude-code = unstable.claude-code;
                     taskwarrior-tui = unstable.taskwarrior-tui;
                   }
                 )

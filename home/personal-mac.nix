@@ -2,11 +2,10 @@
 
 {
   _module.args.mainSSHKey = "prism-key";
-  _module.args.username = "jacob";
-  _module.args.email = "jacobboxerman@gmail.com";
 
   imports = [
     ./common.nix
+    ./modules/ssh-identities.nix
     ./modules/browser.nix
     ./modules/taskwarrior.nix
     ./modules/vscode.nix
@@ -14,7 +13,7 @@
 
   home.homeDirectory = "/Users/jacob";
 
-  home.sessionVariables = lib.mkForce {
+  home.sessionVariables = {
     NIXCONFIG_DIR = "${config.home.homeDirectory}/home/nix-config";
   };
 
@@ -27,6 +26,9 @@
       folders."core" = {
         path = "${config.home.homeDirectory}/home/core";
         devices = [ "server" ];
+        versioning = {
+          type = "staggered";
+        };
       };
     };
   };
@@ -34,10 +36,9 @@
   home.packages = with pkgs; [
     taskwarrior3
     neovide
-    # hackrf
     claude-code
-    # gnuradio
     taskwarrior-tui
+    gh
   ];
 
   programs.zsh = {
@@ -63,14 +64,6 @@
         fi
       fi
     '';
-  };
-
-  programs.ssh.matchBlocks = {
-    "ixion" = {
-      hostname = "5.161.250.109";
-      user = "ixion";
-      identityFile = "%d/.ssh/${config._module.args.mainSSHKey}";
-    };
   };
 
   home.stateVersion = "25.05";
