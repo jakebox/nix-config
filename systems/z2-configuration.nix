@@ -43,6 +43,13 @@
 
   services.tailscale.enable = true;
 
+  services.uptime-kuma = {
+    enable = true;
+    settings = {
+      HOST = "100.99.105.101";
+    };
+  };
+
   services.syncthing = {
     enable = true;
     dataDir = "/home/jacob/";
