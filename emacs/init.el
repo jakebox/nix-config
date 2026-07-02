@@ -72,6 +72,7 @@
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
   (xterm-mouse-mode 1)
+  (hl-line-mode 1)
   (fringe-mode '(8 . 8))
 
   (setq-default mode-line-format '(" - "
@@ -83,7 +84,6 @@
                                    "  " mode-line-misc-info))
 
   :general-config ; Keybindings unrelated to evil mode
-  ("M-s" 'other-window)
   ("M-u" 'capitalize-word)
   ("C-x C-z" 'nil) ; Don't let C-z suspend Emacs
   ("M-=" 'count-words)
@@ -93,6 +93,9 @@
   (:keymaps 'help-mode-map "q" 'kill-buffer-and-window
             "<escape>" 'kill-buffer-and-window))
 
+(use-package ace-window
+  :general-config
+  ("M-s" 'ace-window))
 
 ;;; Saving + Recent ---------
 (use-package recentf
@@ -127,6 +130,16 @@
   (dolist (command '(evil-window-down evil-window-up evil-window-left evil-window-right))
 	(add-to-list 'golden-ratio-extra-commands command)))
 
+(use-package treemacs
+  :custom
+  (treemacs-position 'right)
+  (treemacs-project-follow-mode)
+  (treemacs-width 50)
+  (treemacs-show-hidden-files nil)
+  :general-config
+  ("M-0" 'treemacs-select-window))
+
+(use-package treemacs-evil :after (treemacs evil))
 
 ;;; Completions -----
 (use-package vertico
@@ -247,6 +260,7 @@
            "r" 'consult-recent-file
            "x" 'execute-extended-command
            "c" 'comment-line
+           "l" 'treemacs
            "fd" 'consult-fd
            "bd" 'kill-buffer-and-window
            "br" 'revert-buffer-quick
