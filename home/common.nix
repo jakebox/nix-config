@@ -28,6 +28,7 @@ in
     tmux
     zellij
     rsync
+    gh
   ];
 
   programs.neovim = {

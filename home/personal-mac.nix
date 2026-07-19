@@ -38,7 +38,6 @@
     neovide
     claude-code
     taskwarrior-tui
-    gh
   ];
 
   programs.zsh = {
