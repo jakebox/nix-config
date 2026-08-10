@@ -36,20 +36,17 @@
       "visual-studio-code"
       "spotify"
       "android-file-transfer"
+      "android-platform-tools"
       "microsoft-word"
       "obs"
-      "bambu-studio"
       "autodesk-fusion"
       "alt-tab"
       "imageoptim"
-      "veracrypt"
-      "arduino-ide"
+      "handbrake-app"
       "vlc"
       "xournal++"
       "tailscale-app"
       "cloudflare-warp"
-      "android-platform-tools"
-      "handbrake-app"
     ];
     masApps = {
       "copyclip" = 595191960;
