@@ -7,7 +7,7 @@ let
   key = "%d/.ssh/${mainSSHKey}";
 in
 {
-  programs.ssh.matchBlocks = {
+  programs.ssh.settings = {
     "github github.com" = {
       hostname = "github.com";
       user = "git";

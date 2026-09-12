@@ -4,41 +4,26 @@
   inputs = {
 
     # Nix-Darwin Flake Inputs ---------
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     home-manager-darwin = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
-    };
-
-    # homebrew
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    homebrew-emacs-plus = {
-      url = "github:d12frosted/homebrew-emacs-plus";
-      flake = false;
     };
 
     # NixOS Flake Inputs ---------
     home-manager-nixos = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     # nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     claude-code-nix.url = "github:sadjow/claude-code-nix";
@@ -88,13 +73,12 @@
       darwinConfigurations = {
         "prism" = inputs.nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit (inputs) self homebrew-core homebrew-cask homebrew-emacs-plus;
+            inherit (inputs) self;
           };
 
           modules = [
             ./systems/mac-configuration.nix
             inputs.home-manager-darwin.darwinModules.home-manager
-            inputs.nix-homebrew.darwinModules.nix-homebrew
             {
               users.users.jacob = {
                 name = "jacob";
@@ -130,6 +114,15 @@
             ./home/ubuntu-vm.nix
           ];
         };
+      };
+
+      # make common home manager available for import
+      # flake.nix:
+      # > home-manager.extraSpecialArgs = { jb-nix-config = inputs.jb-nix.config };
+      # home.nix:
+      # > imports = [ jb-nix-config.homeManagerModules.common ];
+      homeManagerModules = {
+        common = import ./home/common.nix;
       };
     };
 }

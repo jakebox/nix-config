@@ -178,7 +178,6 @@
         "browser.newtabpage.activity-stream.showSearch" = true;
         "browser.newtabpage.enabled" = true;
       };
-      extensions = [ ];
     };
   };
 }

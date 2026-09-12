@@ -38,6 +38,8 @@ in
     extraConfig = ''
       set number
     '';
+    withRuby = false;
+    withPython3 = false;
   };
 
   programs.git = {
@@ -57,7 +59,7 @@ in
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
 
-  programs.ssh.matchBlocks = {
+  programs.ssh.settings = {
     "*" = {
       serverAliveInterval = 60;
       serverAliveCountMax = 3;

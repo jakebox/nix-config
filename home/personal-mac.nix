@@ -17,6 +17,10 @@
     NIXCONFIG_DIR = "${config.home.homeDirectory}/home/nix-config";
   };
 
+  home.sessionSearchVariables = { 
+    PATH = [ "/opt/homebrew/bin" ]; # Add homebrew to PATH
+  };
+
   services.syncthing = {
     enable = true;
     settings = {

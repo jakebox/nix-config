@@ -2,56 +2,9 @@
 { pkgs
 , lib
 , self
-, homebrew-core
-, homebrew-cask
-, homebrew-emacs-plus
 , ...
 }:
 {
-  homebrew = {
-    enable = true;
-    onActivation.cleanup = "zap";
-    onActivation.autoUpdate = true;
-    onActivation.upgrade = true;
-    taps = [ "homebrew/cask" ];
-    brews = [
-      { name = "emacs-plus"; }
-      { name = "soapyhackrf"; }
-      { name = "soapysdr"; }
-      { name = "scrcpy"; }
-      { name = "mas"; } # CLI brew control, used by nix-homebrew
-    ];
-    casks = [
-      "firefox"
-      "balenaetcher"
-      "iterm2"
-      "rectangle"
-      "flux-app"
-      "slack"
-      "zoom"
-      "discord"
-      "google-chrome"
-      "calibre"
-      "appcleaner"
-      "visual-studio-code"
-      "spotify"
-      "android-file-transfer"
-      "android-platform-tools"
-      "microsoft-word"
-      "obs"
-      "autodesk-fusion"
-      "alt-tab"
-      "imageoptim"
-      "handbrake-app"
-      "vlc"
-      "xournal++"
-      "tailscale-app"
-      "cloudflare-warp"
-    ];
-    masApps = {
-      "copyclip" = 595191960;
-    };
-  };
 
   fonts.packages = [
     pkgs.jetbrains-mono
@@ -118,20 +71,6 @@
 
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;
-
-  nix-homebrew = {
-    enable = true;
-
-    user = "jacob";
-
-    taps = {
-      "homebrew/homebrew-core" = homebrew-core;
-      "homebrew/homebrew-cask" = homebrew-cask;
-      "d12frosted/homebrew-emacs-plus" = homebrew-emacs-plus;
-    };
-    mutableTaps = false;
-
-  };
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
