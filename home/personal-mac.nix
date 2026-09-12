@@ -21,21 +21,7 @@
     PATH = [ "/opt/homebrew/bin" ]; # Add homebrew to PATH
   };
 
-  services.syncthing = {
-    enable = true;
-    settings = {
-      devices."server" = {
-        id = "MX2IJ3Q-MNL2MLT-RCQB5GY-43JUDAY-67NXICA-ZMS73F4-BIOY4C4-EQW4UAK";
-      };
-      folders."core" = {
-        path = "${config.home.homeDirectory}/home/core";
-        devices = [ "server" ];
-        versioning = {
-          type = "staggered";
-        };
-      };
-    };
-  };
+  services.syncthing.enable = true;
 
   home.packages = with pkgs; [
     taskwarrior3

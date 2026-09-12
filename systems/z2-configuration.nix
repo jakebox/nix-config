@@ -56,19 +56,6 @@
     user = "jacob";
     group = "users";
     guiAddress = "100.99.105.101:8384";
-    settings = {
-      devices = {
-        "mac" = {
-          id = "ZN6RW4V-G656XZ5-DMCXAUZ-OKSAJRE-CRGWNPK-5D2GWXW-CQGACHL-BSHAJQY";
-        };
-      };
-      folders = {
-        "core" = {
-          path = "/data/core";
-          devices = [ "mac" ];
-        };
-      };
-    };
   };
 
   services.filebrowser = {
